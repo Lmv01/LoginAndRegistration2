@@ -44,11 +44,11 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toEndOf="@+id/textView_response_text"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_coversation_upvote"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_reply_upvote"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
     <ImageButton
-        android:id="@+id/imageButton_coversation_upvote"
+        android:id="@+id/imageButton_reply_upvote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"

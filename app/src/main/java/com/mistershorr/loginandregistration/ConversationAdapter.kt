@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class ConversationAdapter (var dataSet: MutableList<>) : RecyclerView.Adapter<ConversationAdapter.ViewHolder>() {
+class ConversationAdapter (var dataSet: MutableList<Conversation>) : RecyclerView.Adapter<ConversationAdapter.ViewHolder>() {
 
 
 
@@ -19,7 +19,7 @@ class ConversationAdapter (var dataSet: MutableList<>) : RecyclerView.Adapter<Co
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConversationAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_sleep, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_conversation, parent, false)
         val holder = ViewHolder(view)
         return holder
     }

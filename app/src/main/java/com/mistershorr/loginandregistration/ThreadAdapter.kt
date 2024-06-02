@@ -40,17 +40,14 @@ class ThreadAdapter(var dataSet: MutableList<Thread?>?) : RecyclerView.Adapter<T
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val thread = dataSet?.get(position)
-        val context = ViewHolder.layout.context
+
 
         val context = viewHolder.layout.context
-        viewHolder.textViewTopic.text = dataSet?.get(position).title.toString()
-        viewHolder.textViewDescription.text = dataSet?.get(position).description.toString()
-
-
-
-        ViewHolder.layout.setOnClickListener {
+        viewHolder.textViewTopic.text = dataSet?.get(position)?.title.toString()
+        viewHolder.textViewDescription.text = dataSet?.get(position)?.description.toString()
+        viewHolder.layout.setOnClickListener {
             val intent = Intent(context, ConversationListActivity::class.java).apply {
-                putExtra(ConversationListActivity.EXTRA_SLEEP, thread)
+                putExtra(ConversationListActivity.HELLO_THERE, thread)
             }
             Log.d(TAG, intent.toString())
 //            intent.putExtra("sleepDate",sleepDate.toString())
@@ -64,6 +61,10 @@ class ThreadAdapter(var dataSet: MutableList<Thread?>?) : RecyclerView.Adapter<T
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount(): Int{
+
+            return dataSet!!.size
+
+
 }
 }

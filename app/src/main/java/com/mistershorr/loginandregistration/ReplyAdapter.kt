@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ReplyAdapter (var dataSet: MutableList<>) : RecyclerView.Adapter<ReplyAdapter.ViewHolder>() {
+class ReplyAdapter (var dataSet: MutableList<Response>) : RecyclerView.Adapter<ReplyAdapter.ViewHolder>() {
 
 
 
@@ -16,7 +16,7 @@ class ReplyAdapter (var dataSet: MutableList<>) : RecyclerView.Adapter<ReplyAdap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReplyAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_sleep, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_reply, parent, false)
         val holder = ViewHolder(view)
         return holder
     }

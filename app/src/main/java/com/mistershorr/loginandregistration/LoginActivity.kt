@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // register with backendless
-        Backendless.initApp( this, Constants.APP_ID, Constants.API_KEY );
+        Backendless.initApp( this, "A421CDFC-82BB-46AA-BFC2-4F7F250AC158", "20D83E18-58E4-4593-81E1-3F8A2C120D1C" );
 
         binding.buttonLoginLogin.setOnClickListener({
             Backendless.UserService.login(
@@ -53,7 +53,6 @@ class LoginActivity : AppCompatActivity() {
                     override fun handleResponse(user: BackendlessUser?) {
                         // user has been logged in
                         Log.d("LoginActivity", "Logged in")
-
                         val ThreadListIntent = Intent(this@LoginActivity, ThreadListActivity::class.java)
                         startActivity(ThreadListIntent)
                     }
@@ -61,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                     override fun handleFault(fault: BackendlessFault) {
                         // login failed, to get the error code call
                         fault.getCode()
-                        Log.d("LoginActivity", "didn't log in")
+                        Log.d("LoginActivity", "${fault.message}")
                     }
                 })
         })
