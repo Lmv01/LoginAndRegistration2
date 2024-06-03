@@ -25,7 +25,6 @@ class ThreadAdapter(var dataSet: MutableList<Thread?>?) : RecyclerView.Adapter<T
         init {
             textViewTopic = view.findViewById(R.id.textView_thread_topic)
             textViewDescription = view.findViewById(R.id.textView_thread_description)
-
             layout = view.findViewById(R.id.layout_itemThread)
 
         }
@@ -49,6 +48,8 @@ class ThreadAdapter(var dataSet: MutableList<Thread?>?) : RecyclerView.Adapter<T
             val intent = Intent(context, ConversationListActivity::class.java).apply {
                 putExtra(ConversationListActivity.HELLO_THERE, thread)
             }
+                intent.putExtra("threadID", thread?.objectId)
+
             Log.d(TAG, intent.toString())
 //            intent.putExtra("sleepDate",sleepDate.toString())
 //            intent.putExtra("bedTime",bedTime.toString())

@@ -14,13 +14,14 @@ import com.mistershorr.loginandregistration.databinding.ActivityThreadListBindin
 
 
 class ThreadListActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityThreadListBinding
-    private lateinit var adapter: ThreadAdapter
+     lateinit var binding: ActivityThreadListBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityThreadListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadDataFromBackendless2()
+
 
     }
 
@@ -30,18 +31,31 @@ class ThreadListActivity : AppCompatActivity() {
     }
 
 
-    private fun loadDataFromBackendless2() {
+    fun loadDataFromBackendless2() {
         val userId = Backendless.UserService.CurrentUser().userId
         // need the ownerId to match the objectId of the user
         val whereClause = "ownerId = '$userId'"
         val queryBuilder = DataQueryBuilder.create()
         queryBuilder.whereClause = whereClause
         // include the queryBuilder in the find function
-        Backendless.Data.of(Thread::class.java).find(queryBuilder, object :
+        Backendless.Data.of(Thread::class.java).find(queryBuilder,object : AsyncCallback<List<Thread>>{
+            override fun handleResponse(response: List<Thread>?) {
+                val adapter = ThreadAdapter(response as MutableList<Thread?>)
+                binding.recyclerViewList.adapter = adapter
+                binding.recyclerViewList.layoutManager = LinearLayoutManager(this@ThreadListActivity)
+            }
+
+            override fun handleFault(fault: BackendlessFault?) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        /*Backendless.Data.of(Thread::class.java).find(queryBuilder, object :
             AsyncCallback<List<Thread?>?> {
             override fun handleResponse(threadList: List<Thread?>?) {
                 Log.d(ContentValues.TAG, "handleResponse: $threadList")
-                adapter = ThreadAdapter(threadList?.toMutableList())
+                val adapter = ThreadAdapter(threadList as MutableList<Thread?>)
+
                 binding.recyclerViewList.adapter = adapter
                 binding.recyclerViewList.layoutManager = LinearLayoutManager(this@ThreadListActivity)
 
@@ -51,6 +65,6 @@ class ThreadListActivity : AppCompatActivity() {
             override fun handleFault(fault: BackendlessFault) {
                 Log.d(ContentValues.TAG, "handleFault: ${fault.message}")
             }
-        })
+        })*/
     }
 }

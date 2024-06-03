@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Thread(
-    var description : String,
-    var title: String,
-    var objectId: String?,
-    var ownerId: String?
+    var description : String = "",
+    var title: String = "",
+    var objectId: String? = "",
+    var ownerId: String? = ""
 ): Parcelable

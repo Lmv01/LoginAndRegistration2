@@ -5,9 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Response(
-    var downvotes: Int,
-    var text: String,
-    var upvotes: Int,
-    var objectId: String?,
-    var ownerId: String?
+    var downvotes: Int = 0,
+    var text: String = "",
+    var upvotes: Int = 0,
+    var conversationID: String = "",
+    var objectId: String? = "",
+    var ownerId: String?= ""
 ): Parcelable
